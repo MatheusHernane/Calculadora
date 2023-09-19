@@ -4,7 +4,7 @@ import Button from "@mui/material-next/Button";
 const botao = () => {
   return (
     <div>
-      <h1>Botão</h1>
+      <Button />
     </div>
   );
 };
