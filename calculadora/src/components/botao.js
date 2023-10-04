@@ -1,12 +1,10 @@
-import React from "react";
-import Button from "@mui/material-next/Button";
+import * as React from "react";
+import Button from "@mui/material/Button";
 
-const botao = () => {
+export default function botao(props) {
   return (
     <div>
-      <h1>Botão</h1>
+      <Button {...props} />
     </div>
   );
-};
-
-export default botao;
+}
