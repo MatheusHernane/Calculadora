@@ -25,7 +25,7 @@ const theme = createTheme({
 
 export default function Calculadora() {
   const [num, setNum] = useState(0);
-  const [oldnum, setOldnum] = useState();
+  const [oldnum, setOldnum] = useState(0);
   const [operator, setOperator] = useState();
 
   function inputNum(e) {
