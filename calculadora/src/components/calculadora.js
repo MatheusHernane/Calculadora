@@ -29,7 +29,7 @@ export default function Calculadora() {
   const [operator, setOperator] = useState();
 
   function inputNum(e) {
-    var input = e.target.value;
+    let input = e.target.value;
     if (num === 0) {
       setNum(input);
     } else {
