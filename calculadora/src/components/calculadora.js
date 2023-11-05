@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import useCalculator from "../hooks/useCalculator";
 import { Box, Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Botao from "./botao";
@@ -24,49 +24,7 @@ const theme = createTheme({
 });
 
 export default function Calculadora() {
-  const [num, setNum] = useState(0);
-  const [oldnum, setOldnum] = useState(0);
-  const [operator, setOperator] = useState();
-
-  function inputNum(e) {
-    let input = e.target.value;
-    if (num === 0) {
-      setNum(input);
-    } else {
-      setNum(num + input);
-    }
-  }
-
-  function clear() {
-    setNum(0);
-    setOldnum(0);
-    setOperator(0);
-  }
-
-  function operation(e) {
-    var operatorInput = e.target.value;
-    setOperator(operatorInput);
-    setOldnum(num);
-    setNum(0);
-  }
-
-  function calculate() {
-    if (operator === "/") {
-      setNum(parseFloat(oldnum) / parseFloat(num)); //parseFloat converte a string em número
-    } else if (operator === "x") {
-      setNum(parseFloat(oldnum) * parseFloat(num));
-    } else if (operator === "+") {
-      setNum(parseFloat(oldnum) + parseFloat(num));
-    } else if (operator === "-") {
-      setNum(parseFloat(oldnum) - parseFloat(num));
-    } else if (operator === "x²") {
-      setNum(parseFloat(oldnum) * parseFloat(oldnum));
-    } else if (operator === "x³") {
-      setNum(parseFloat(oldnum) * parseFloat(oldnum) * parseFloat(oldnum));
-    } else if (operator === "√") {
-      setNum(Math.sqrt(parseFloat(oldnum)));
-    }
-  }
+  const { num, inputNum, clear, operation, calculate } = useCalculator();
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ "& button": { m: 0 } }}>
