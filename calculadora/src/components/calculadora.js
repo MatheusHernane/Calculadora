@@ -24,12 +24,26 @@ const theme = createTheme({
 });
 
 export default function Calculadora() {
-  const { num, inputNum, clear, operation, calculate } = useCalculator();
+  const {
+    num,
+    inputNum,
+    clear,
+    operation,
+    calculate,
+    oldnum,
+    operator,
+    result,
+  } = useCalculator();
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ "& button": { m: 0 } }}>
         <Grid className="details" container spacing={0.5}>
-          <h1 className="result">{num}</h1>
+          <h1 className="result">
+            {oldnum}
+            {operator}
+            {num}
+          </h1>
+          <h1 className="resultTotal">{result}</h1>
           <Grid item xs={2.4}>
             <Botao
               fullWidth={true}
