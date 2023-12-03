@@ -25,7 +25,6 @@ const theme = createTheme({
 
 export default function Calculadora() {
   const {
-    num,
     inputNum,
     clear,
     operation,
@@ -33,6 +32,8 @@ export default function Calculadora() {
     oldnum,
     operator,
     result,
+    equal,
+    second,
   } = useCalculator();
   return (
     <ThemeProvider theme={theme}>
@@ -41,7 +42,8 @@ export default function Calculadora() {
           <h1 className="result">
             {oldnum}
             {operator}
-            {num}
+            {second}
+            {equal}
           </h1>
           <h1 className="resultTotal">{result}</h1>
           <Grid item xs={2.4}>
@@ -269,6 +271,7 @@ export default function Calculadora() {
               variant="contained"
               color="primary"
               onClick={calculate}
+              value={"="}
             >
               =
             </Botao>
