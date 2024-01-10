@@ -1,48 +1,72 @@
 import { useState } from "react";
 
 export default function useCalculator() {
-  const [num, setNum] = useState(0);
-  const [oldnum, setOldnum] = useState(0);
-  const [operator, setOperator] = useState();
+  const [num, setNum] = useState("");
+  const [oldnum, setOldnum] = useState("");
+  const [operator, setOperator] = useState("");
+  const [result, setResult] = useState(0);
+  const [equal, setEqual] = useState("");
+  const [second, setSecond] = useState("");
 
   function inputNum(e) {
     let input = e.target.value;
-    if (num === 0) {
+    if (num === "") {
       setNum(input);
+      setResult(input);
     } else {
       setNum(num + input);
+      setResult(result + input);
     }
-  }
-
-  function clear() {
-    setNum(0);
-    setOldnum(0);
-    setOperator(0);
   }
 
   function operation(e) {
     let operatorInput = e.target.value;
     setOperator(operatorInput);
     setOldnum(num);
-    setNum(0);
+    setNum("");
+    setResult(num);
   }
 
-  function calculate() {
+  function calculate(e) {
+    let calculateInput = e.target.value;
+    setEqual(calculateInput);
+    setSecond(num);
     if (operator === "/") {
-      setNum(parseFloat(oldnum) / parseFloat(num)); //parseFloat converte a string em número
+      setResult(parseFloat(oldnum) / parseFloat(num)); //parseFloat converte a string em número
     } else if (operator === "x") {
-      setNum(parseFloat(oldnum) * parseFloat(num));
+      setResult(parseFloat(oldnum) * parseFloat(num));
     } else if (operator === "+") {
-      setNum(parseFloat(oldnum) + parseFloat(num));
+      setResult(parseFloat(oldnum) + parseFloat(num));
     } else if (operator === "-") {
-      setNum(parseFloat(oldnum) - parseFloat(num));
+      setResult(parseFloat(oldnum) - parseFloat(num));
     } else if (operator === "x²") {
-      setNum(parseFloat(oldnum) * parseFloat(oldnum));
+      setResult(parseFloat(oldnum) * parseFloat(oldnum));
     } else if (operator === "x³") {
-      setNum(parseFloat(oldnum) * parseFloat(oldnum) * parseFloat(oldnum));
+      setResult(parseFloat(oldnum) * parseFloat(oldnum) * parseFloat(oldnum));
     } else if (operator === "√") {
-      setNum(Math.sqrt(parseFloat(oldnum)));
+      setResult(Math.sqrt(parseFloat(oldnum)));
     }
   }
-  return { num, inputNum, clear, operation, calculate };
+
+  function clear() {
+    setNum("");
+    setOldnum("");
+    setOperator("");
+    setResult(0);
+    setEqual("");
+    setSecond("");
+  }
+
+  return {
+    num,
+    inputNum,
+    clear,
+    operation,
+    calculate,
+    oldnum,
+    operator,
+    result,
+    equal,
+    second,
+  };
 }
